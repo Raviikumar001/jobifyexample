@@ -1,6 +1,7 @@
 import express from 'express';
 const app = express();
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 import 'express-async-errors';
 import morgan from 'morgan';
@@ -33,6 +34,9 @@ if (process.env.NODE_ENV !== 'production') {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // only when ready to deploy
+app.use(cors({
+  origin: "*",
+}));
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(express.json());
