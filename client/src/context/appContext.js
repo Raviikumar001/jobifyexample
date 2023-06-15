@@ -1,5 +1,5 @@
 import React, { useReducer, useContext, useEffect } from 'react';
-
+import { SERVER_URL } from  '../utils/const'
 import reducer from './reducer';
 import axios from 'axios';
 import {
@@ -72,7 +72,7 @@ const AppProvider = ({ children }) => {
 
   // axios
   const authFetch = axios.create({
-    baseURL: '/api/v1',
+    baseURL: SERVER_URL,
   });
   // request
 
@@ -106,7 +106,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: SETUP_USER_BEGIN });
     try {
       const { data } = await axios.post(
-        `/api/v1/auth/${endPoint}`,
+        `/auth/${endPoint}`,
         currentUser
       );
 
