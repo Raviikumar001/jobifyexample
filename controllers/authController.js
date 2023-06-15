@@ -67,7 +67,9 @@ const updateUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user, location: user.location });
 };
 
+
 const getCurrentUser = async (req, res) => {
+  console.log('inside get Current user');
   const user = await User.findOne({ _id: req.user.userId });
   res.status(StatusCodes.OK).json({ user, location: user.location });
 };

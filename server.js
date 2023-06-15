@@ -34,9 +34,11 @@ if (process.env.NODE_ENV !== 'production') {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // only when ready to deploy
+console.log('cors begin')
 app.use(cors({
   origin: "*",
 }));
+console.log('cors end');
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(express.json());
@@ -45,6 +47,7 @@ app.use(express.json());
 app.use(mongoSanitize());
 app.use(cookieParser());
 
+console.log('goind inside router');
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', authenticateUser, jobsRouter);
 

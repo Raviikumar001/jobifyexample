@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
+
 import rateLimiter from 'express-rate-limit';
 const apiLimiter = rateLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -8,6 +9,7 @@ const apiLimiter = rateLimiter({
   message: 'Too many requests from this IP, please try again after 15 minutes',
 });
 
+console.log(' hello from rate limiter');
 import {
   register,
   login,
@@ -22,6 +24,7 @@ router.route('/login').post(apiLimiter, login);
 router.get('/logout', logout);
 
 router.route('/updateUser').patch(authenticateUser, testUser, updateUser);
+console.log('hello before get current');
 router.route('/getCurrentUser').get(authenticateUser, getCurrentUser);
 
 export default router;
