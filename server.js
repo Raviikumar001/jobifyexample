@@ -42,10 +42,13 @@ console.log('cors end');
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(express.json());
-// app.use(helmet());
-// app.use(xss());
+app.use(helmet());
+app.use(xss());
 app.use(mongoSanitize());
-app.use(cookieParser());
+app.use(cookieParser({
+  sameSite: 'none',
+  secure: true
+}));
 
 console.log('goind inside router');
 app.use('/api/v1/auth', authRouter);
