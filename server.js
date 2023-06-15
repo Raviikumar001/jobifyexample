@@ -37,17 +37,18 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log('cors begin')
 app.use(cors({
   origin: "*",
+  credentials: true
 }));
 console.log('cors end');
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(express.json());
 app.use(helmet());
-app.use(xss());
+// app.use(xss());
 app.use(mongoSanitize());
 app.use(cookieParser({
   sameSite: 'none',
-  secure: true
+  secure: false
 }));
 
 console.log('goind inside router');
